@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout - Buy Now</title>
+  <link rel="stylesheet" href="buy_now.css">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .page-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .main-content {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .billing, .order-summary {
+      width: 48%;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+    }
+
+    .place-order-btn {
+      background-color: orange;
+      border: none;
+      padding: 15px;
+      color: white;
+      font-size: 16px;
+      width: 100%;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    .order-summary {
+      margin-top: 20px;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+    }
+
+    .footer-icons {
+      display: flex;
+      justify-content: space-around;
+      padding: 20px 0;
+      border-top: 1px solid #ccc;
+      font-size: 14px;
+      color: #333;
+      background-color: #f9f9f9;
+    }
+
+    .footer-icons div {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; /* This centers content vertically */
+      text-align: center;
+      width: 18%;
+      padding: 10px;
+    }
+
+    .footer-icons img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 10px;
+    }
+
+    #popup {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 30px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      border-radius: 10px;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    #popup button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: orange;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #overlay {
+      display: none;
+      position: fixed;
+      z-index: 9998;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body style="padding-bottom: 500px;">
+<body onload="loadProductDetails()">
+  <div class="page-container">
+
+    <div class="main-content">
+      <!-- Billing Section -->
+      <div class="billing">
+        <h2>Billing Details</h2>
+        <input type="text" placeholder="First name *">
+        <input type="text" placeholder="Last name *">
+        <input type="text" placeholder="Company name (optional)">
+        <input type="text" placeholder="Country / Region *" value="India">
+        <input type="text" placeholder="Street address *">
+        <input type="text" placeholder="Apartment, suite, unit, etc. (optional)">
+        <input type="text" placeholder="Town / City *">
+        <input type="text" placeholder="State *" value="Karnataka">
+        <input type="text" placeholder="PIN Code *">
+        <input type="text" placeholder="Phone *">
+        <input type="email" placeholder="Email address *">
+        <label><input type="checkbox"> Ship to a different address?</label>
+        <label>Order notes (optional)</label>
+        <textarea id="order-notes" placeholder="Notes about your order..."></textarea>
+      </div>
+
+      <!-- Order Summary Section -->
+      <div class="order-summary">
+        <h2>Your Order</h2>
+        <div id="order-details"></div>
+
+        <p><strong>Payment Options:</strong></p>
+        <input type="radio" name="payment" checked> Cash on Delivery<br>
+        <input type="radio" name="payment"> Credit / Debit Card<br>
+        <input type="radio" name="payment"> UPI / Net Banking<br><br>
+
+        <button class="place-order-btn" onclick="placeOrder()">PLACE ORDER</button>
+      </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer-icons">
+      <div>
+        <img src="https://cdn-icons-png.flaticon.com/512/2920/2920244.png" alt="Free Shipping">
+        <div><strong>FREE SHIPPING</strong><br>For Orders more than ₹999</div>
+      </div>
+      <div>
+        <img src="https://cdn-icons-png.flaticon.com/512/1250/1250615.png" alt="Online Payment">
+        <div><strong>ONLINE PAYMENT</strong><br>Payment methods</div>
+      </div>
+      <div>
+        <img src="https://cdn-icons-png.flaticon.com/512/5977/5977565.png" alt="Support">
+        <div><strong>24/7 SUPPORT</strong><br>Unlimited help desk</div>
+      </div>
+      <div>
+        <img src="https://cdn-icons-png.flaticon.com/512/709/709790.png" alt="Safe">
+        <div><strong>100% SAFE</strong><br>View our benefits</div>
+      </div>
+      <div>
+        <img src="https://cdn-icons-png.flaticon.com/512/3304/3304621.png" alt="Returns">
+        <div><strong>FREE RETURNS</strong><br>Track or off orders</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="overlay"></div>
+  <div id="popup">
+    <p>🎉 Your order has been placed successfully!</p>
+    <button onclick="closePopup()">OK</button>
+  </div>
+
+  <script>
+    function loadProductDetails() {
+      const productName = localStorage.getItem("productName");
+      const productPrice = parseFloat(localStorage.getItem("productPrice"));
+
+      if (!productName || isNaN(productPrice)) {
+        document.getElementById("order-details").innerHTML = "<p>No product selected.</p>";
+        return;
+      }
+
+      const shipping = 99;
+      const total = productPrice + shipping;
+
+      document.getElementById("order-details").innerHTML = `
+        <p><strong>Product:</strong> ${productName} × 1</p>
+        <p><strong>Subtotal:</strong> ₹${productPrice.toFixed(2)}</p>
+        <p><strong>Shipping:</strong> Flat rate ₹${shipping}</p>
+        <p><strong>Total:</strong> ₹${total.toFixed(2)}</p>
+      `;
+    }
+
+    function placeOrder() {
+      document.getElementById("overlay").style.display = "block";
+      document.getElementById("popup").style.display = "block";
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+      document.getElementById("overlay").style.display = "none";
+    }
+  </script>
+</body>
+</html>

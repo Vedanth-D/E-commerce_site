@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | Shopping Site</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+    body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradientBG 10s ease infinite;
+    }
+
+    @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .login-box {
+        width: 370px;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        text-align: center;
+    }
+
+    .login-box h2 {
+        color: white;
+        margin-bottom: 20px;
+    }
+
+    .login-box input {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        outline: none;
+    }
+
+    .login-box input::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .login-box button {
+        width: 100%;
+        padding: 12px;
+        background: #23d5ab;
+        border: none;
+        color: black;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.3s;
+        margin-top: 5px;
+    }
+
+    .login-box button:hover {
+        background: #ffffff;
+    }
+
+    .social-btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 10px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .google { background: white; color: black; }
+    .facebook { background: #1877F2; color: white; }
+
+    .social-btn img { width: 20px; }
+</style>
+</head>
+<body>
+    <div class="login-box">
+        <h2>Login</h2>
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button type="button" onclick="handleLogin()">Login</button> <!-- IMPORTANT -->
+
+        <p style="color:white; margin:10px 0;">OR</p>
+
+        <button class="social-btn google">
+            <img src="https://www.svgrepo.com/show/475656/google-color.svg"> Continue with Google
+        </button>
+        <button class="social-btn facebook">
+            <img src="https://www.svgrepo.com/show/448224/facebook.svg"> Continue with Facebook
+        </button>
+    </div>
+
+<script>
+function handleLogin() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    if (email === "" || password === "") {
+        alert("Please enter email and password!");
+        return;
+    }
+
+    // ✅ Save login status
+    localStorage.setItem("isLoggedIn", "true");
+
+    alert("Login Successful!");
+
+    setTimeout(() => {
+        window.location.href = "buttons.html";
+    }, 1000);
+}
+</script>
+
+
+</body>
+</html>

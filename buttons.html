@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <script defer src="script.js"></script>
+  
+</head>
+<body style="padding-bottom: 1000px;">
+   <div class="logo">JUGSY
+    <img class = cart-icon src="icons/cart.webp" alt="Cart">
+   </div>
+  <div class="header">
+  <div class="left-section">
+    <button class="hamburger-button">
+    <img class="hamburger-menu" src="icons/hamburger-menu.svg"></button>
+    
+  </div>
+  <div class="middle-section">
+    <input class="Search-tab" type="textbox" placeholder="Search">
+    <button class="search-button">
+      <img class="search-icon" src="icons/search button.svg">
+    </button>
+    <button class="voice-button">
+      <img class="voice-icon" src="icons/voice-search-icon.svg">
+    </button>
+    <div id="search-message" style="text-align:center; color: red; font-weight:bold; margin-top: 8px;"></div>
+
+  </div>
+
+  <div class="right-section">
+    <button class="notification-button">
+    <img class="notification-cart" src="icons/notifications.svg"></button>
+    <button class="sign-up" type="button" onclick="location.href='pages.html'">sign-up</button>
+  </div>  
+  </div>
+
+  <div class="container">
+    <div class="book-detail">
+      <img src="thumbnails/Harry-potter-1.jpg" alt="Harry Potter 1">
+      <div class="book-content">
+        <p class="title">Harry Potter and the Philosopher's Stone</p>
+        <p class="price">₹599 - in stock.</p>
+        <p class="delivery-info">Free delivery for tomorrow.</p>
+        <button class="add-to-Cart-button">Add to Cart</button>
+        <button class="buy-now-button" onclick="buyNow('Harry Potter and the Philosophers Stone', 599)">Buy now</button>
+      </div>
+    </div>
+
+    <div class="book-detail">
+      <img src="thumbnails/Harry-potter-2.jpg" alt="Harry Potter 2">
+      <div class="book-content">
+        <p class="title">Harry Potter and the Chamber of Secrets</p>
+        <p class="price">₹499 - in stock.</p>
+        <p class="delivery-info">Free delivery for tomorrow.</p>
+        <button class="add-to-Cart-button">Add to Cart</button>
+        <button class="buy-now-button" onclick="buyNow('Harry Potter and the Chamber of Secrets', 499)">Buy now</button>
+      </div>
+    </div>
+
+    <div class="book-detail">
+      <img src="thumbnails/Harry-potter-3.jpg" alt="Harry Potter 3">
+      <div class="book-content">
+        <p class="title">Harry Potter and the Prisoner of Azkaban</p>
+        <p class="price">₹566 - out of stock.</p>
+        <p class="delivery-info">Free delivery for tomorrow.</p>
+        <button class="add-to-Cart-button">Add to Cart</button>
+        <button class="buy-now-button" onclick="buyNow('Harry Potter and the Prisoner of Azkaban', 566)">Buy now</button>
+      </div>
+    </div>
+
+    <div class="book-detail">
+        <img src="thumbnails/Harry-potter-4.jpg" alt="Harry Potter 4">
+        <div class="book-content">
+          <p class="title">Harry Potter and the order of the Phoenix</p>
+          <p class="price">₹560 - out of stock.</p>
+          <p class="delivery-info">Free delivery for tomorrow.</p>
+          <button class="add-to-Cart-button">Add to Cart</button>
+          <button class="buy-now-button" onclick="buyNow('Harry Potter and the order of the Phoenix', 560)">Buy now</button>
+        </div>
+      </div>
+
+      <div class="book-detail">
+        <img src="thumbnails/Harry-potter-5.jpg" alt="Harry Potter 5">
+        <div class="book-content">
+          <p class="title">Harry Potter and the Goblet of Fire</p>
+          <p class="price">₹560 - out of stock.</p>
+          <p class="delivery-info">Free delivery for tomorrow.</p>
+          <button class="add-to-Cart-button">Add to Cart</button>
+          <button class="buy-now-button" onclick="buyNow('Harry Potter and the Goblet of Fire', 560)">Buy now</button>
+        </div>
+      </div>
+
+      <div class="book-detail">
+        <img src="thumbnails/Harry-potter-6.jpg" alt="Harry-potter-6">
+        <div class="book-content">
+          <p class="title">Harry Potter and the Half-Blood Prince</p>
+          <p class="price">₹560 - out of stock.</p>
+          <p class="delivery-info">Free delivery for tomorrow.</p>
+          <button class="add-to-Cart-button">Add to Cart</button>
+          <button class="buy-now-button" onclick="buyNow('Harry Potter and the Half-Blood Prince', 560)">Buy now</button>
+        </div>
+      </div>
+
+      <div class="book-detail">
+        <img src="thumbnails/Harry-potter-7.jpg" alt="Harry Potter-7">
+        <div class="book-content">
+          <p class="title">Harry Potter and the Deathly Hallows</p>
+          <p class="price">₹560 - out of stock.</p>
+          <p class="delivery-info">Free delivery for tomorrow.</p>
+          <button class="add-to-Cart-button">Add to Cart</button>
+          <button class="buy-now-button" onclick="buyNow('Harry Potter and the Deathly Hallows', 560)">Buy now</button>
+        </div>
+      </div>
+
+      <div class="book-detail">
+        <img src="thumbnails/Harry-potter-8.jpg" alt="Harry Potter-8">
+        <div class="book-content">
+          <p class="title">Harry Potter Wizarding Almanac</p>
+          <p class="price">₹560 - out of stock.</p>
+          <p class="delivery-info">Free delivery for tomorrow.</p>
+          <button class="add-to-Cart-button">Add to Cart</button>
+          <button class="buy-now-button" onclick="buyNow('Harry Potter Wizarding Almanac', 560)">Buy now</button>
+        </div>
+      </div>
+
+        <!-- Yellow Banner -->
+      <section class="jugsy-banner">
+        <div class="jugsy-logo">JUGSY</div>
+        <div class="download-buttons">
+          <h3>DOWNLOAD THE APP</h3>
+          <button onclick="window.open('https://play.google.com/store/apps/details?id=com.example.jugsy', '_blank')">Get it On Android</button>
+          <button onclick="window.open('https://apps.apple.com/in/app/example-jugsy/id1234567890', '_blank')">Get it On IOS</button>
+        </div>
+      </section>
+
+      <!-- Register Section -->
+      <section class="register-section">
+        <h2>REGISTER FOR FREE</h2>
+        <p>Register with us and win amazing discount points on the books</p>
+        <li><button class="register-btn" onclick="location.href='pages.html'">Register</button></li>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-links">
+          <a href="#">Service</a>
+          <a href="#">About Us</a>
+          <a href="#">Contact Us</a>
+          <a href="#">FAQs</a>
+        </div>
+        <div class="footer-logo">JUGSY</div>
+      </footer>
+</div>
+
+  <script>
+    window.onload = function() {
+    if (localStorage.getItem("isLoggedIn") === "true") {
+        // Hide the signup button
+        const signupBtn = document.querySelector(".sign-up");
+        if (signupBtn) {
+            signupBtn.style.display = "none";
+        }
+    }
+}
+
+  function buyNow(productName, price) {
+    localStorage.setItem("productName", productName);
+    localStorage.setItem("productPrice", price);
+    window.location.href = "buy_now.html";
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.querySelector(".Search-tab");
+    const searchButton = document.querySelector(".search-button");
+    const books = document.querySelectorAll(".book-detail");
+    const message = document.getElementById("search-message");
+
+    function searchBooks() {
+      const searchText = searchInput.value.toLowerCase().trim();
+      let found = false;
+
+      books.forEach(book => {
+        const title = book.querySelector(".title").textContent.toLowerCase();
+        if (title.includes(searchText)) {
+          book.style.display = "flex"; // Show the book
+          found = true;
+        } else {
+          book.style.display = "none"; // Hide non-matching books
+        }
+      });
+
+      if (searchText === "") {
+        books.forEach(book => book.style.display = "flex");
+        message.textContent = "";
+      } else {
+        message.textContent = found ? "" : "No results found.";
+      }
+    }
+
+    searchButton.addEventListener("click", searchBooks);
+
+    searchInput.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        searchBooks();
+      }
+    });
+  });
+
+    function buyNow(productName, price) {
+      // Save selected product info in localStorage
+      localStorage.setItem("productName", productName);
+      localStorage.setItem("productPrice", price);
+      // Redirect to the order page
+      window.location.href = "buy_now.html";
+    }
+  </script>
+
+</body>
+</html>
